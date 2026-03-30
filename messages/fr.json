@@ -1,0 +1,57 @@
+{
+  "Sidebar": {
+    "dashboard": "Tableau de Bord",
+    "requests": "Demandes d'Assistance",
+    "users": "Utilisateurs",
+    "drivers": "Conducteurs",
+    "providers": "Prestataires",
+    "map": "Localisation",
+    "smsLogs": "Journaux SMS",
+    "evaluations": "Évaluations",
+    "settings": "Paramètres"
+  },
+  "Header": {
+    "search": "Rechercher des demandes, conducteurs...",
+    "adminPanel": "Panneau d'Administration"
+  },
+  "Dashboard": {
+    "dashboard": "Tableau de Bord",
+    "totalUsers": "Utilisateurs Totaux",
+    "totalDrivers": "Conducteurs",
+    "activeRequests": "Demandes Actives",
+    "averageRating": "Note Moyenne",
+    "recentRequests": "Demandes Récentes",
+    "dispatcherConsole": "Console Répartiteur",
+    "liveFeed": "Flux en Direct",
+    "addDriver": "Ajouter Conducteur",
+    "broadcast": "Diffuser",
+    "unassigned": "Non Assignés",
+    "report": "Signaler"
+  },
+  "Status": {
+    "pending": "En attente",
+    "accepted": "Acceptée",
+    "completed": "Terminée",
+    "cancelled": "Annulée"
+  },
+  "Priority": {
+    "high": "Haute",
+    "normal": "Normale",
+    "low": "Basse"
+  },
+  "Channel": {
+    "app": "Application",
+    "sms": "SMS"
+  },
+  "Table": {
+    "id": "ID",
+    "typePanne": "Type de Panne",
+    "status": "Statut",
+    "priority": "Priorité",
+    "channel": "Canal",
+    "dateCreation": "Date de Création",
+    "conducteur": "Conducteur",
+    "prestataire": "Prestataire",
+    "actions": "Actions"
+  }
+}

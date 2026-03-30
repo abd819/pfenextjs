@@ -1,0 +1,57 @@
+{
+  "Sidebar": {
+    "dashboard": "لوحة القيادة",
+    "requests": "طلبات المساعدة",
+    "users": "المستخدمين",
+    "drivers": "السائقين",
+    "providers": "مقدمي الخدمة",
+    "map": "تتبع الموقع",
+    "smsLogs": "سجلات الرسائل",
+    "evaluations": "التقييمات",
+    "settings": "الإعدادات"
+  },
+  "Header": {
+    "search": "البحث عن طلبات، سائقين...",
+    "adminPanel": "لوحة الإدارة"
+  },
+  "Dashboard": {
+    "dashboard": "لوحة القيادة",
+    "totalUsers": "إجمالي المستخدمين",
+    "totalDrivers": "السائقين",
+    "activeRequests": "الطلبات النشطة",
+    "averageRating": "متوسط التقييم",
+    "recentRequests": "الطلبات الأخيرة",
+    "dispatcherConsole": "وحدة التحكم",
+    "liveFeed": "البث المباشر",
+    "addDriver": "إضافة سائق",
+    "broadcast": "بث",
+    "unassigned": "غير معين",
+    "report": "تقرير"
+  },
+  "Status": {
+    "pending": "قيد الانتظار",
+    "accepted": "مقبول",
+    "completed": "مكتمل",
+    "cancelled": "ملغي"
+  },
+  "Priority": {
+    "high": "عالية",
+    "normal": "عادية",
+    "low": "منخفضة"
+  },
+  "Channel": {
+    "app": "تطبيق",
+    "sms": "رسالة نصية"
+  },
+  "Table": {
+    "id": "المعرف",
+    "typePanne": "نوع العطل",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "channel": "القناة",
+    "dateCreation": "تاريخ الإنشاء",
+    "conducteur": "السائق",
+    "prestataire": "مقدم الخدمة",
+    "actions": "إجراءات"
+  }
+}
