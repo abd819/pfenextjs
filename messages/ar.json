@@ -53,5 +53,40 @@
     "conducteur": "السائق",
     "prestataire": "مقدم الخدمة",
     "actions": "إجراءات"
+  },
+  "Settings": {
+    "pageTitle": "الإعدادات",
+    "pageDescription": "قم بإدارة تفضيلات النظام وإعدادات المزوّدين والإشعارات.",
+    "notifications": {
+      "title": "الإشعارات",
+      "smsFallback": "تفعيل الرسائل القصيرة (SMS Fallback)",
+      "smsFallbackDesc": "استخدام رسائل SMS كبديل عند فشل إشعارات التطبيق.",
+      "appNotifications": "إشعارات التطبيق السريعة",
+      "appNotificationsDesc": "تفعيل الإشعارات الفورية داخل النظام."
+    },
+    "systemConfig": {
+      "title": "إعدادات النظام (DemandeAssistance)",
+      "defaultPriority": "الأولوية الافتراضية للطلبات",
+      "autoAssign": "التعيين التلقائي",
+      "autoAssignDesc": "تعيين مقدم خدمة تلقائيًا بناءً على الموقع."
+    },
+    "providers": {
+      "title": "إعدادات مقدمي الخدمة (Prestataire)",
+      "minRating": "الحد الأدنى للتقييم",
+      "maxRadius": "نطاق البحث الأقصى (كم)"
+    },
+    "security": {
+      "title": "الأمان",
+      "changePassword": "تغيير كلمة المرور",
+      "sessionTimeout": "مهلة الجلسة (دقائق)"
+    },
+    "localization": {
+      "title": "الترجمة والتوطين",
+      "language": "لغة النظام",
+      "arabic": "العربية",
+      "french": "الفرنسية"
+    },
+    "save": "حفظ التغييرات",
+    "cancel": "إلغاء"
   }
 }

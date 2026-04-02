@@ -53,5 +53,40 @@
     "conducteur": "Conducteur",
     "prestataire": "Prestataire",
     "actions": "Actions"
+  },
+  "Settings": {
+    "pageTitle": "Paramètres",
+    "pageDescription": "Gérez vos préférences système, prestataires et notifications.",
+    "notifications": {
+      "title": "Notifications",
+      "smsFallback": "Activer le routage automatique par SMS (Fallback)",
+      "smsFallbackDesc": "Activer le routage automatique par SMS si l'application est hors ligne.",
+      "appNotifications": "Notifications via l'application",
+      "appNotificationsDesc": "Recevoir des alertes système en direct par l'application."
+    },
+    "systemConfig": {
+      "title": "Configuration Système (DemandeAssistance)",
+      "defaultPriority": "Priorité par défaut",
+      "autoAssign": "Assignation automatique",
+      "autoAssignDesc": "Trouve et assigne le meilleur prestataire par proximité."
+    },
+    "providers": {
+      "title": "Paramètres Prestataires (Prestataire)",
+      "minRating": "Note Minimum Attendue",
+      "maxRadius": "Distance Maximale (km)"
+    },
+    "security": {
+      "title": "Protocoles de Sécurité",
+      "changePassword": "Changer le mot de passe",
+      "sessionTimeout": "Expiration de session (min)"
+    },
+    "localization": {
+      "title": "Régional",
+      "language": "Langue (Ar/Fr)",
+      "arabic": "Arabe",
+      "french": "Français"
+    },
+    "save": "Enregistrer",
+    "cancel": "Réinitialiser"
   }
 }
