@@ -77,9 +77,9 @@ export const mockConducteurs: Conducteur[] = [
 ];
 
 export const mockPrestataires: Prestataire[] = [
-  { id: "P1", name: "Najda Towing Services", phone: "+966500000010", email: "tow1@najda.com", role: "Provider", status: "active", availability: true, rating: 4.8, serviceZone: "Riyadh", numberOfInterventions: 342 },
-  { id: "P2", name: "QuickFix Auto", phone: "+966500000011", email: "quickfix@najda.com", role: "Provider", status: "active", availability: false, rating: 4.5, serviceZone: "Jeddah", numberOfInterventions: 128 },
-  { id: "P3", name: "Al-Riyadh Recovery", phone: "+966500000012", email: "recovery@najda.com", role: "Provider", status: "active", availability: true, rating: 4.9, serviceZone: "Riyadh", numberOfInterventions: 890 },
+  { id: "P1", name: "Awini Towing Services", phone: "+966500000010", email: "tow1@awini.com", role: "Provider", status: "active", availability: true, rating: 4.8, serviceZone: "Riyadh", numberOfInterventions: 342 },
+  { id: "P2", name: "QuickFix Auto", phone: "+966500000011", email: "quickfix@awini.com", role: "Provider", status: "active", availability: false, rating: 4.5, serviceZone: "Jeddah", numberOfInterventions: 128 },
+  { id: "P3", name: "Al-Riyadh Recovery", phone: "+966500000012", email: "recovery@awini.com", role: "Provider", status: "active", availability: true, rating: 4.9, serviceZone: "Riyadh", numberOfInterventions: 890 },
 ];
 
 export const mockLocations: Localisation[] = [
@@ -130,9 +130,9 @@ export const mockDemandes: DemandeAssistance[] = [
 ];
 
 export const mockSmsLogs: MessageSMS[] = [
-  { id: "SMS-1", phoneNumber: "+966500000001", content: "Najda: Your driver is arriving in 5 mins.", status: "delivered", sentAt: new Date(Date.now() - 1000 * 60 * 15).toISOString() },
-  { id: "SMS-2", phoneNumber: "+966500000002", content: "Najda Request R-002: Please confirm location.", status: "sent", sentAt: new Date(Date.now() - 1000 * 60 * 45).toISOString() },
-  { id: "SMS-3", phoneNumber: "+966500000003", content: "Najda Offline Fallback: Location failed", status: "failed", sentAt: new Date(Date.now() - 1000 * 60 * 120).toISOString() },
+  { id: "SMS-1", phoneNumber: "+966500000001", content: "Awini: Your driver is arriving in 5 mins.", status: "delivered", sentAt: new Date(Date.now() - 1000 * 60 * 15).toISOString() },
+  { id: "SMS-2", phoneNumber: "+966500000002", content: "Awini Request R-002: Please confirm location.", status: "sent", sentAt: new Date(Date.now() - 1000 * 60 * 45).toISOString() },
+  { id: "SMS-3", phoneNumber: "+966500000003", content: "Awini Offline Fallback: Location failed", status: "failed", sentAt: new Date(Date.now() - 1000 * 60 * 120).toISOString() },
 ];
 
 export const mockEvaluations: Evaluation[] = [

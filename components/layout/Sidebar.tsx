@@ -39,7 +39,7 @@ export default function Sidebar() {
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-lg">N</span>
           </div>
-          <span className="text-xl font-bold text-white tracking-wide">Najda</span>
+          <span className="text-xl font-bold text-white tracking-wide">Awini</span>
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export default function Sidebar() {
           </div>
           <div className="flex flex-col overflow-hidden">
             <span className="text-sm font-medium text-white truncate">Ahmed Mansour</span>
-            <span className="text-xs text-slate-500 truncate">Admin Najda</span>
+            <span className="text-xs text-slate-500 truncate">Admin Awini</span>
           </div>
         </div>
       </div>

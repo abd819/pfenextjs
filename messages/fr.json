@@ -52,7 +52,12 @@
     "dateCreation": "Date de Création",
     "conducteur": "Conducteur",
     "prestataire": "Prestataire",
-    "actions": "Actions"
+    "actions": "Actions",
+    "newRequest": "Nouvelle demande",
+    "addDriver": "Ajouter Conducteur",
+    "addProvider": "Ajouter Prestataire",
+    "location": "Localisation",
+    "filters": "Filtres"
   },
   "Settings": {
     "pageTitle": "Paramètres",

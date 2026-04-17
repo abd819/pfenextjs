@@ -1,0 +1,1455 @@
+openapi: 3.0.3
+info:
+  title: Backend PFE API
+  version: 1.0.0
+paths:
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/accounts/login/:
+    post:
+      operationId: v1_accounts_login_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTokenObtainPair'
+          description: ''
+  /api/v1/accounts/me/:
+    get:
+      operationId: v1_accounts_me_retrieve
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/accounts/register/:
+    post:
+      operationId: v1_accounts_register_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register'
+          description: ''
+  /api/v1/accounts/token/refresh/:
+    post:
+      operationId: v1_accounts_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/v1/dispatch/offers/process-timeouts/:
+    post:
+      operationId: v1_dispatch_offers_process_timeouts_create
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/dispatch/requests/{request_id}/respond/:
+    post:
+      operationId: v1_dispatch_requests_respond_create
+      parameters:
+      - in: path
+        name: request_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/locations/provider/update/:
+    post:
+      operationId: v1_locations_provider_update_create
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/locations/request/{request_id}/provider/:
+    get:
+      operationId: v1_locations_request_provider_retrieve
+      parameters:
+      - in: path
+        name: request_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/providers/profiles/:
+    get:
+      operationId: v1_providers_profiles_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProviderProfile'
+          description: ''
+    post:
+      operationId: v1_providers_profiles_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProviderProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProviderProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProviderProfile'
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderProfile'
+          description: ''
+  /api/v1/providers/profiles/{id}/:
+    get:
+      operationId: v1_providers_profiles_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this provider profile.
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderProfile'
+          description: ''
+    put:
+      operationId: v1_providers_profiles_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this provider profile.
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProviderProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProviderProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProviderProfile'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderProfile'
+          description: ''
+    patch:
+      operationId: v1_providers_profiles_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this provider profile.
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProviderProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProviderProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProviderProfile'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderProfile'
+          description: ''
+    delete:
+      operationId: v1_providers_profiles_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this provider profile.
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/providers/reviews/:
+    get:
+      operationId: v1_providers_reviews_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+          description: ''
+    post:
+      operationId: v1_providers_reviews_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Review'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+  /api/v1/providers/reviews/{id}/:
+    get:
+      operationId: v1_providers_reviews_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+    put:
+      operationId: v1_providers_reviews_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Review'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+    patch:
+      operationId: v1_providers_reviews_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReview'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReview'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReview'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+    delete:
+      operationId: v1_providers_reviews_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/requests/:
+    get:
+      operationId: v1_requests_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceRequestList'
+          description: ''
+    post:
+      operationId: v1_requests_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequestCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ServiceRequestCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ServiceRequestCreate'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceRequestCreate'
+          description: ''
+  /api/v1/requests/{id}/:
+    get:
+      operationId: v1_requests_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceRequestDetail'
+          description: ''
+  /api/v1/requests/{id}/accept/:
+    post:
+      operationId: v1_requests_accept_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/requests/{id}/cancel/:
+    post:
+      operationId: v1_requests_cancel_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/requests/{id}/complete/:
+    post:
+      operationId: v1_requests_complete_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/vehicles/:
+    get:
+      operationId: v1_vehicles_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vehicle'
+          description: ''
+    post:
+      operationId: v1_vehicles_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+          description: ''
+  /api/v1/vehicles/{id}/:
+    get:
+      operationId: v1_vehicles_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+          description: ''
+    put:
+      operationId: v1_vehicles_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+          description: ''
+    patch:
+      operationId: v1_vehicles_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicle'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+          description: ''
+    delete:
+      operationId: v1_vehicles_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    CustomTokenObtainPair:
+      type: object
+      properties:
+        phone:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - password
+      - phone
+    DispatchStateEnum:
+      enum:
+      - pending
+      - offered
+      - accepted
+      - expired
+      - cancelled
+      type: string
+      description: |-
+        * `pending` - Pending
+        * `offered` - Offered
+        * `accepted` - Accepted
+        * `expired` - Expired
+        * `cancelled` - Cancelled
+    PatchedProviderProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        provider:
+          type: integer
+          readOnly: true
+        provider_first_name:
+          type: string
+          readOnly: true
+        provider_last_name:
+          type: string
+          readOnly: true
+        provider_phone:
+          type: string
+          readOnly: true
+        is_available:
+          type: boolean
+        average_rating:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+          readOnly: true
+        total_reviews:
+          type: integer
+          readOnly: true
+        service_zone:
+          type: string
+          maxLength: 255
+    PatchedReview:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        request:
+          type: integer
+        driver:
+          type: integer
+          readOnly: true
+        provider:
+          type: integer
+          readOnly: true
+        rating:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        comment:
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ReviewStatusEnum'
+          readOnly: true
+        response:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        response_date:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        driver_first_name:
+          type: string
+          readOnly: true
+        driver_last_name:
+          type: string
+          readOnly: true
+    PatchedVehicle:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        driver:
+          type: integer
+          readOnly: true
+        brand:
+          type: string
+          maxLength: 100
+        model_name:
+          type: string
+          maxLength: 100
+        year:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        registration_number:
+          type: string
+          maxLength: 50
+        color:
+          type: string
+          maxLength: 50
+        vehicle_type:
+          type: string
+          maxLength: 100
+        display_name:
+          type: string
+          readOnly: true
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/VehicleImage'
+          readOnly: true
+        uploaded_images:
+          type: array
+          items:
+            type: string
+            format: uri
+          writeOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+    ProviderProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        provider:
+          type: integer
+          readOnly: true
+        provider_first_name:
+          type: string
+          readOnly: true
+        provider_last_name:
+          type: string
+          readOnly: true
+        provider_phone:
+          type: string
+          readOnly: true
+        is_available:
+          type: boolean
+        average_rating:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+          readOnly: true
+        total_reviews:
+          type: integer
+          readOnly: true
+        service_zone:
+          type: string
+          maxLength: 255
+      required:
+      - average_rating
+      - id
+      - provider
+      - provider_first_name
+      - provider_last_name
+      - provider_phone
+      - total_reviews
+    Register:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 255
+        last_name:
+          type: string
+          maxLength: 255
+        phone:
+          type: string
+          maxLength: 20
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+        password:
+          type: string
+          writeOnly: true
+        password_confirmation:
+          type: string
+          writeOnly: true
+        date_creation:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - date_creation
+      - first_name
+      - id
+      - last_name
+      - password
+      - password_confirmation
+      - phone
+      - role
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        request:
+          type: integer
+        driver:
+          type: integer
+          readOnly: true
+        provider:
+          type: integer
+          readOnly: true
+        rating:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        comment:
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ReviewStatusEnum'
+          readOnly: true
+        response:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        response_date:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        driver_first_name:
+          type: string
+          readOnly: true
+        driver_last_name:
+          type: string
+          readOnly: true
+      required:
+      - comment
+      - created_at
+      - driver
+      - driver_first_name
+      - driver_last_name
+      - id
+      - provider
+      - rating
+      - request
+      - response_date
+      - status
+    ReviewStatusEnum:
+      enum:
+      - published
+      - hidden
+      type: string
+      description: |-
+        * `published` - Published
+        * `hidden` - Hidden
+    RoleEnum:
+      enum:
+      - driver
+      - provider
+      type: string
+      description: |-
+        * `driver` - Driver
+        * `provider` - Provider
+    ServiceRequestCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        vehicle:
+          type: integer
+        vehicle_name:
+          type: string
+          readOnly: true
+        service_type:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        image:
+          type: string
+          format: uri
+          nullable: true
+        image_url:
+          type: string
+          readOnly: true
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        address:
+          type: string
+          maxLength: 255
+        status:
+          allOf:
+          - $ref: '#/components/schemas/Status416Enum'
+          readOnly: true
+        dispatch_state:
+          allOf:
+          - $ref: '#/components/schemas/DispatchStateEnum'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - dispatch_state
+      - id
+      - image_url
+      - latitude
+      - longitude
+      - service_type
+      - status
+      - vehicle
+      - vehicle_name
+    ServiceRequestDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        vehicle:
+          type: integer
+          nullable: true
+        vehicle_name:
+          type: string
+          readOnly: true
+        service_type:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        image:
+          type: string
+          format: uri
+          nullable: true
+        image_url:
+          type: string
+          readOnly: true
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        address:
+          type: string
+          maxLength: 255
+        status:
+          $ref: '#/components/schemas/Status416Enum'
+        dispatch_state:
+          $ref: '#/components/schemas/DispatchStateEnum'
+        customer:
+          type: integer
+        customer_first_name:
+          type: string
+          readOnly: true
+        customer_last_name:
+          type: string
+          readOnly: true
+        customer_phone:
+          type: string
+          readOnly: true
+        customer_email:
+          type: string
+          format: email
+          readOnly: true
+        provider:
+          type: integer
+          nullable: true
+        provider_first_name:
+          type: string
+          readOnly: true
+        provider_last_name:
+          type: string
+          readOnly: true
+        provider_email:
+          type: string
+          format: email
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        accepted_at:
+          type: string
+          format: date-time
+          nullable: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        cancelled_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - created_at
+      - customer
+      - customer_email
+      - customer_first_name
+      - customer_last_name
+      - customer_phone
+      - id
+      - image_url
+      - latitude
+      - longitude
+      - provider_email
+      - provider_first_name
+      - provider_last_name
+      - service_type
+      - vehicle_name
+    ServiceRequestList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        vehicle:
+          type: integer
+          nullable: true
+        vehicle_name:
+          type: string
+          readOnly: true
+        service_type:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        status:
+          $ref: '#/components/schemas/Status416Enum'
+        dispatch_state:
+          $ref: '#/components/schemas/DispatchStateEnum'
+        customer_first_name:
+          type: string
+          readOnly: true
+        customer_last_name:
+          type: string
+          readOnly: true
+        customer_phone:
+          type: string
+          readOnly: true
+        provider_first_name:
+          type: string
+          readOnly: true
+        provider_last_name:
+          type: string
+          readOnly: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+        image_url:
+          type: string
+          readOnly: true
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        address:
+          type: string
+          maxLength: 255
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - customer_first_name
+      - customer_last_name
+      - customer_phone
+      - id
+      - image_url
+      - latitude
+      - longitude
+      - provider_first_name
+      - provider_last_name
+      - service_type
+      - vehicle_name
+    Status416Enum:
+      enum:
+      - pending
+      - accepted
+      - provider_on_the_way
+      - arrived
+      - completed
+      - cancelled
+      type: string
+      description: |-
+        * `pending` - Pending
+        * `accepted` - Accepted
+        * `provider_on_the_way` - Provider On The Way
+        * `arrived` - Arrived
+        * `completed` - Completed
+        * `cancelled` - Cancelled
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          writeOnly: true
+      required:
+      - access
+      - refresh
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        driver:
+          type: integer
+          readOnly: true
+        brand:
+          type: string
+          maxLength: 100
+        model_name:
+          type: string
+          maxLength: 100
+        year:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        registration_number:
+          type: string
+          maxLength: 50
+        color:
+          type: string
+          maxLength: 50
+        vehicle_type:
+          type: string
+          maxLength: 100
+        display_name:
+          type: string
+          readOnly: true
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/VehicleImage'
+          readOnly: true
+        uploaded_images:
+          type: array
+          items:
+            type: string
+            format: uri
+          writeOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - brand
+      - color
+      - created_at
+      - display_name
+      - driver
+      - id
+      - images
+      - model_name
+      - registration_number
+      - vehicle_type
+      - year
+    VehicleImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        image:
+          type: string
+          format: uri
+        image_url:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - image
+      - image_url
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

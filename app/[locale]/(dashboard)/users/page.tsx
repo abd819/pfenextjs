@@ -15,7 +15,7 @@ export default function UsersOverviewPage() {
       </div>
 
       <p className="text-slate-500">
-        Gérez tous les acteurs de la plateforme Najda. Sélectionnez une catégorie ci-dessous.
+        Gérez tous les acteurs de la plateforme Awini. Sélectionnez une catégorie ci-dessous.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">

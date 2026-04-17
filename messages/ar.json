@@ -52,7 +52,12 @@
     "dateCreation": "تاريخ الإنشاء",
     "conducteur": "السائق",
     "prestataire": "مقدم الخدمة",
-    "actions": "إجراءات"
+    "actions": "إجراءات",
+    "newRequest": "طلب جديد",
+    "addDriver": "إضافة سائق",
+    "addProvider": "إضافة مقدم خدمة",
+    "location": "الموقع",
+    "filters": "تصفية"
   },
   "Settings": {
     "pageTitle": "الإعدادات",

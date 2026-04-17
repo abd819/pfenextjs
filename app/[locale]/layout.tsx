@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "Najda - Admin Dashboard",
+  title: "Awini - Admin Dashboard",
   description: "Smart Roadside Assistance Platform",
 };
 
