@@ -1,12 +1,32 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { MagnifyingGlassIcon, BellIcon, QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import { useTranslations, useLocale } from "next-intl";
+import { useEffect, useState } from "react";
+import {
+  MagnifyingGlassIcon,
+  BellIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/24/outline";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Header() {
   const t = useTranslations("Header");
+  const locale = useLocale();
+  const [theme, setTheme] = useState<string>("");
+
+  useEffect(() => {
+    // Log current locale
+    console.log(`[UI] Current locale: ${locale}`);
+
+    // Log current theme
+    const currentTheme = localStorage.getItem("theme") || "system";
+    setTheme(currentTheme);
+    console.log(`[UI] Current theme: ${currentTheme}`);
+    console.log(
+      `[UI] Dark mode active: ${document.documentElement.classList.contains("dark")}`,
+    );
+  }, [locale]);
 
   return (
     <header className="h-[72px] flex items-center justify-between px-6 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm z-10 transition-colors duration-300">

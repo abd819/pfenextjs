@@ -11,14 +11,22 @@ export default function ThemeToggle() {
     setMounted(true);
     // Check local storage or system preference
     const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+
     if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
       setIsDarkMode(true);
       document.documentElement.classList.add("dark");
+      console.log(
+        "[THEME] Loaded: dark (from",
+        savedTheme ? "localStorage" : "system preference",
+        ")",
+      );
     } else {
       setIsDarkMode(false);
       document.documentElement.classList.remove("dark");
+      console.log("[THEME] Loaded: light");
     }
   }, []);
 
@@ -27,10 +35,12 @@ export default function ThemeToggle() {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
       setIsDarkMode(false);
+      console.log("[THEME] Switched to: light");
     } else {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
       setIsDarkMode(true);
+      console.log("[THEME] Switched to: dark");
     }
   };
 
@@ -48,6 +58,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       className="p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors flex items-center justify-center"
       aria-label="Toggle Dark Mode"
+      title={`Switch to ${isDarkMode ? "light" : "dark"} mode`}
     >
       {isDarkMode ? (
         <SunIcon className="w-6 h-6 text-amber-500" />

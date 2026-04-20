@@ -39,8 +39,8 @@ if (typeof window !== "undefined") {
 
 // ─── Token storage ─────────────────────────────────────────────────────────────
 
-const STORAGE_KEY_ACCESS = "najda_access";
-const STORAGE_KEY_REFRESH = "najda_refresh";
+const STORAGE_KEY_ACCESS = "access";
+const STORAGE_KEY_REFRESH = "refresh";
 
 function isBrowser(): boolean {
   return typeof window !== "undefined";
@@ -49,7 +49,15 @@ function isBrowser(): boolean {
 export const tokenStore = {
   getAccess(): string | null {
     if (!isBrowser()) return null;
-    return localStorage.getItem(STORAGE_KEY_ACCESS);
+    const token = localStorage.getItem(STORAGE_KEY_ACCESS);
+    if (!token) {
+      console.warn(`[AUTH] No access token found in localStorage`);
+    } else {
+      console.log(
+        `[AUTH] Retrieved access token: ${token.substring(0, 20)}...`
+      );
+    }
+    return token;
   },
   getRefresh(): string | null {
     if (!isBrowser()) return null;
@@ -59,15 +67,20 @@ export const tokenStore = {
     if (!isBrowser()) return;
     localStorage.setItem(STORAGE_KEY_ACCESS, access);
     localStorage.setItem(STORAGE_KEY_REFRESH, refresh);
+    console.log(
+      `[AUTH] Tokens stored: access=${access.substring(0, 20)}..., refresh=${refresh.substring(0, 20)}...`
+    );
   },
   setAccess(access: string): void {
     if (!isBrowser()) return;
     localStorage.setItem(STORAGE_KEY_ACCESS, access);
+    console.log(`[AUTH] Access token updated: ${access.substring(0, 20)}...`);
   },
   clear(): void {
     if (!isBrowser()) return;
     localStorage.removeItem(STORAGE_KEY_ACCESS);
     localStorage.removeItem(STORAGE_KEY_REFRESH);
+    console.log(`[AUTH] Tokens cleared`);
   },
 };
 
@@ -146,6 +159,11 @@ export async function apiRequest<T>(
   const token = auth ? tokenStore.getAccess() : null;
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
+    console.log(
+      `[API] Authorization header: Bearer ${token.substring(0, 20)}...`
+    );
+  } else if (auth) {
+    console.warn(`[API] No token available for authenticated request!`);
   }
 
   // Build request
@@ -187,16 +205,20 @@ export async function apiRequest<T>(
 
   // ── 401: attempt token refresh then retry once ──
   if (response.status === 401 && auth && !isRetry) {
-    console.log(`[API] 401 Unauthorized on ${url}, attempting token refresh`);
+    console.log(`[API] 401 Unauthorized on ${url}`);
+    console.log(`[API] - Token was present: ${!!token}`);
+    console.log(`[API] - Auth header value: ${headers["Authorization"]}`);
+    console.log(`[API] Attempting token refresh...`);
+
     const refreshed = await refreshAccessToken();
 
     if (refreshed) {
-      console.log(`[API] Token refreshed, retrying ${url}`);
+      console.log(`[API] Token refreshed successfully, retrying ${url}`);
       return apiRequest<T>(path, { ...opts, isRetry: true });
     }
 
     // Refresh failed — session expired
-    console.log(`[API] Token refresh failed, clearing session`);
+    console.error(`[API] Token refresh failed, session expired`);
     tokenStore.clear();
     // Emit a custom event so UI can redirect to login
     if (isBrowser()) {

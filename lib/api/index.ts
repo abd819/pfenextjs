@@ -7,6 +7,7 @@
 
 // Client primitives (token store, result types)
 export { tokenStore } from "./client";
+export { authDebug } from "./debug";
 export type { ApiResult, ApiOk, ApiErr } from "./client";
 
 // All types derived from the OpenAPI schema
@@ -85,10 +86,7 @@ export {
 } from "./locations";
 
 // Dispatch
-export {
-  processOfferTimeouts,
-  respondToDispatchRequest,
-} from "./dispatch";
+export { processOfferTimeouts, respondToDispatchRequest } from "./dispatch";
 
 // Vehicles
 export {
